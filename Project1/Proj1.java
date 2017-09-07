@@ -1,21 +1,24 @@
 import java.util.*;
-import java.util.Scanner;
 
 public class Proj1 {
-  public static void main (String []args){
+  public static void partition(int n){
+    partition(n, n, "");
+  }
+  public static void partition(int n, int max, String prefix){
+    if (n == 0){
+      System.out.println(prefix);
+      return;
+    }
+
+    for (int i = Math.min(max, n); i >= 1; i--){
+      partition(n-i, i, prefix + " " + i);
+    }
+  }
+  public static void main(String[] args){
+
+    // int n = Integer.parseInt(args[0]);
     System.out.println("enter n: ");
     int n = new Scanner(System.in).nextInt();
-    System.out.println("You printed n: " + n);
-    fibonacci(int n);
-    System.out.println("Fibonacci of n: " + n);
-  } // End Main
-
-  public int fibonacci(int n){
-    if(n == 0)
-      return 0;
-    else if(n == 1)
-      return 1;
-    else
-      return fibonacci(n - 1) + fibonacci(n - 2);
+    partition(n);
   }
-} // End Class
+}
